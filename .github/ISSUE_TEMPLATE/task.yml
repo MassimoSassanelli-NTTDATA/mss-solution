@@ -27,6 +27,7 @@ body:
       options:
         - mss-app
         - maui-toolkit
+        - net-client-api-sapcloud
         - net-client-api
     validations:
       required: true

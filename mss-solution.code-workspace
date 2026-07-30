@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../mss-app"
+		},
+		{
+			"path": "../net-client-api-sapcloud"
 		}
 	],
 	"settings": {

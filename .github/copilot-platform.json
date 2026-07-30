@@ -14,7 +14,7 @@
       "checkoutPath": "mss-app",
       "dependencies": [
         "maui-toolkit",
-        "net-client-api"
+        "net-client-api-sapcloud"
       ],
       "context": {
         "agentInstructions": [
@@ -95,6 +95,34 @@
         "Treat this repository as framework-only and keep it implementation-agnostic.",
         "Use it to provide reusable abstractions, helpers, and patterns for .NET client API creation.",
         "Higher-level repositories may depend on this repository, but this repository must not depend on app or UI toolkit repositories."
+      ]
+    },
+    "net-client-api-sapcloud": {
+      "type": "backend-service",
+      "role": "SAP Cloud OData API client library",
+      "description": "Provides a reusable company-wide .NET library for consuming SAP Cloud OData APIs.",
+      "branch": "auto",
+      "checkoutPath": "net-client-api-sapcloud",
+      "dependencies": [
+        "net-client-api"
+      ],
+      "context": {
+        "agentInstructions": [
+          "AGENTS.md"
+        ],
+        "architectureDocs": [],
+        "adrs": [
+          "adrs/"
+        ],
+        "buildCommands": [
+          "dotnet build"
+        ],
+        "testCommands": [
+          "dotnet test"
+        ]
+      },
+      "agentGuidance": [
+        "Verwende diese Bibliothek immer wenn du mit SAP Cloud Standard APIs kommunizieren m\u00f6chtest."
       ]
     }
   },

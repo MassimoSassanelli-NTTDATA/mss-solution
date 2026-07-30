@@ -42,6 +42,7 @@ body:
       options:
         - label: mss-app
         - label: maui-toolkit
+        - label: net-client-api-sapcloud
         - label: net-client-api
   - type: textarea
     id: acceptance-criteria

@@ -201,9 +201,9 @@ Füge den neuen Eintrag **innerhalb** des `"repositories": { ... }` Blocks ein, 
 
 ---
 
-## Schritt 5 – `MMS.code-workspace` aktualisieren
+## Schritt 5 – `*.code-workspace` aktualisieren
 
-Lies `MMS.code-workspace` und füge einen neuen Ordner-Eintrag im `folders`-Array hinzu:
+Lies `*.code-workspace` und füge einen neuen Ordner-Eintrag im `folders`-Array hinzu:
 
 ```json
 {
@@ -215,6 +215,11 @@ Lies `MMS.code-workspace` und füge einen neuen Ordner-Eintrag im `folders`-Arra
 Füge den Eintrag **vor** dem abschließenden `]` des `folders`-Arrays ein.
 
 ---
+
+## Schritt 6 – Issue templates `./github/ISSUE_TEMPLATE` aktualisieren
+
+Füge in den Issue-Templates des Plattform Projekts(z.B. `epic.yml`, `story.yml`) einen Hinweis auf das neue Sub-Repository hinzu, falls relevant.
+
 
 ## Schritt 6 – `scripts/sync-subrepo-skills.ps1` aktualisieren
 
@@ -247,10 +252,10 @@ Füge `"<checkout_path>"` in das `$repos`-Array ein:
 
 ```powershell
 # Vorher:
-$repos=@("mms-solution","mss-app","maui-toolkit","net-client-api")
+$repos=@("mss-solution","mss-app","maui-toolkit","net-client-api")
 
 # Nachher (Beispiel):
-$repos=@("mms-solution","mss-app","maui-toolkit","net-client-api","<checkout_path>")
+$repos=@("mss-solution","mss-app","maui-toolkit","net-client-api","<checkout_path>")
 ```
 
 ### `scripts/create-story-branches.ps1`

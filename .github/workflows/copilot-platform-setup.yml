@@ -1,0 +1,218 @@
+name: Copilot Platform Multi-Repo Setup
+
+on:
+  workflow_call:
+    inputs:
+      platform_repository:
+        required: true
+        type: string
+      platform_ref:
+        required: false
+        type: string
+        default: main
+      platform_config_path:
+        required: false
+        type: string
+        default: .github/copilot-platform.json
+      default_branch:
+        required: false
+        type: string
+        default: develop
+      checkout_mode:
+        required: false
+        type: string
+        default: dependency-closure
+      workspace_root:
+        required: false
+        type: string
+        default: mms-solution
+    secrets:
+      MULTI_REPO_TOKEN:
+        required: true
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      WORKSPACE_ROOT: ${{ inputs.workspace_root }}
+      DEFAULT_BRANCH: ${{ inputs.default_branch }}
+      CHECKOUT_MODE: ${{ inputs.checkout_mode }}
+      PLATFORM_CONFIG_PATH: ${{ inputs.platform_config_path }}
+      CURRENT_REPOSITORY_NAME: ${{ github.event.repository.name }}
+      CURRENT_REPOSITORY_OWNER: ${{ github.repository_owner }}
+    steps:
+      - name: Prepare workspace root
+        shell: bash
+        run: mkdir -p "$WORKSPACE_ROOT"
+
+      - name: Checkout current repository below workspace root
+        uses: actions/checkout@v6
+        with:
+          path: ${{ inputs.workspace_root }}/${{ github.event.repository.name }}
+
+      - name: Checkout platform repository below workspace root
+        uses: actions/checkout@v6
+        with:
+          repository: ${{ inputs.platform_repository }}
+          ref: ${{ inputs.platform_ref }}
+          path: ${{ inputs.workspace_root }}/.platform
+          token: ${{ secrets.MULTI_REPO_TOKEN }}
+
+      - name: Determine current branch
+        shell: bash
+        run: |
+          CURRENT_BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
+          echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> "$GITHUB_ENV"
+
+      - name: Create checkout plan and context model
+        shell: bash
+        working-directory: ${{ inputs.workspace_root }}
+        run: |
+          python3 <<'PY'
+          import json, os
+          from pathlib import Path
+          config = json.loads((Path('.platform') / os.environ['PLATFORM_CONFIG_PATH']).read_text(encoding='utf-8'))
+          repos = config.get('repositories', {})
+          current = os.environ['CURRENT_REPOSITORY_NAME']
+          owner = os.environ['CURRENT_REPOSITORY_OWNER']
+          mode = os.environ.get('CHECKOUT_MODE', 'dependency-closure')
+          for name, meta in repos.items():
+              meta.setdefault('owner', owner)
+              meta.setdefault('branch', 'auto')
+              meta.setdefault('checkoutPath', name)
+              meta.setdefault('dependencies', [])
+              meta.setdefault('context', {})
+              meta['context'].setdefault('agentInstructions', [])
+              meta['context'].setdefault('skills', [])
+              meta['context'].setdefault('architectureDocs', [])
+              meta['context'].setdefault('adrs', [])
+              meta['context'].setdefault('buildCommands', [])
+              meta['context'].setdefault('testCommands', [])
+          def visit(name, selected):
+              if name in selected:
+                  return
+              if name not in repos:
+                  raise SystemExit(f'Repository {name} is referenced but not defined')
+              selected.append(name)
+              for dep in repos[name].get('dependencies', []):
+                  visit(dep, selected)
+          if mode == 'all':
+              selected = list(repos.keys())
+          else:
+              selected = []
+              visit(current, selected) if current in repos else selected.extend(repos.keys())
+          reverse = {r: [] for r in repos}
+          for repo, meta in repos.items():
+              for dep in meta.get('dependencies', []):
+                  reverse.setdefault(dep, []).append(repo)
+          with open('checkout-plan.tsv', 'w', encoding='utf-8') as f:
+              for repo in selected:
+                  meta = repos[repo]
+                  f.write('\t'.join([repo, meta['owner'], meta['branch'], meta['checkoutPath'], ','.join(meta['dependencies'])]) + '\n')
+          context = {'platform': config.get('platform', {}), 'repositories': repos, 'selectedRepositories': selected, 'reverseDependencies': reverse, 'checkoutMode': mode, 'currentRepository': current, 'workspaceRoot': os.environ.get('WORKSPACE_ROOT'), 'rules': config.get('rules', {})}
+          Path('workspace-config.generated.json').write_text(json.dumps(context, indent=2), encoding='utf-8')
+          PY
+
+      - name: Checkout dependency repositories
+        shell: bash
+        working-directory: ${{ inputs.workspace_root }}
+        env:
+          MULTI_REPO_TOKEN: ${{ secrets.MULTI_REPO_TOKEN }}
+        run: |
+          : > checkout-results.tsv
+          while IFS=$'\t' read -r REPO OWNER BRANCH_SPEC CHECKOUT_PATH DEPS; do
+            if [ "$REPO" = "$CURRENT_REPOSITORY_NAME" ]; then
+              echo -e "${REPO}\t${CHECKOUT_PATH}\t${CURRENT_BRANCH}\tcurrent-repository\t${DEPS}" >> checkout-results.tsv
+              continue
+            fi
+            FULL_REPO="${OWNER}/${REPO}"
+            if [ -n "$BRANCH_SPEC" ] && [ "$BRANCH_SPEC" != "auto" ]; then
+              SELECTED_BRANCH="$BRANCH_SPEC"
+              STATUS="manifest-branch"
+            elif git ls-remote --exit-code --heads "https://x-access-token:${MULTI_REPO_TOKEN}@github.com/${FULL_REPO}.git" "$CURRENT_BRANCH" >/dev/null 2>&1; then
+              SELECTED_BRANCH="$CURRENT_BRANCH"
+              STATUS="auto-current-branch"
+            else
+              SELECTED_BRANCH="$DEFAULT_BRANCH"
+              STATUS="fallback-${DEFAULT_BRANCH}"
+            fi
+            git clone --depth 1 --branch "$SELECTED_BRANCH" "https://x-access-token:${MULTI_REPO_TOKEN}@github.com/${FULL_REPO}.git" "$CHECKOUT_PATH"
+            git -C "$CHECKOUT_PATH" remote set-url origin "https://github.com/${FULL_REPO}.git"
+            echo -e "${REPO}\t${CHECKOUT_PATH}\t${SELECTED_BRANCH}\t${STATUS}\t${DEPS}" >> checkout-results.tsv
+          done < checkout-plan.tsv
+
+      - name: Generate WORKSPACE.md and REPOSITORY_CONTEXT.md
+        shell: bash
+        working-directory: ${{ inputs.workspace_root }}
+        run: |
+          python3 <<'PY'
+          import json
+          from pathlib import Path
+          context = json.loads(Path('workspace-config.generated.json').read_text(encoding='utf-8'))
+          lines = ['# Copilot Workspace Context', '', f"Workspace root: `{context.get('workspaceRoot')}`", f"Checkout mode: `{context.get('checkoutMode')}`", f"Current repository: `{context.get('currentRepository')}`", '', '## Checked-Out Repositories', '', '| Repository | Checkout Path | Branch | Resolution | Dependencies |', '|---|---|---|---|---|']
+          for row in Path('checkout-results.tsv').read_text(encoding='utf-8').splitlines():
+              repo, path, branch, status, deps = row.split('\t')
+              lines.append(f'| `{repo}` | `{path}` | `{branch}` | `{status}` | {deps or "-"} |')
+          lines += ['', '## Source of Truth', '', '- GitHub Issues, Sub-Issues and PRs are authoritative.', '- REPOSITORY_CONTEXT.md is generated at runtime from the platform manifest.']
+          Path('WORKSPACE.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+
+          rlines = ['# Repository Context', '', 'This file is generated at runtime from `.github/copilot-platform.json` and tells agents which sub-repository instructions, skills, ADRs and docs must be read, plus the platform rules and per-repository agent guidance they must follow.', '']
+          platform_rules = context.get('rules', {})
+          if platform_rules:
+              rlines += ['## Platform Rules', '']
+              for key, value in platform_rules.items():
+                  rlines.append(f'- **{key}**: {value}')
+              rlines.append('')
+          for repo in context.get('selectedRepositories', []):
+              meta = context['repositories'][repo]
+              checkout = meta.get('checkoutPath', repo)
+              ctx = meta.get('context', {})
+              rlines += [f'## {repo}', '', f'Role: {meta.get("role", "")}', f'Checkout path: `{checkout}`', '']
+              guidance = meta.get('agentGuidance', [])
+              if guidance:
+                  rlines.append('### Agent Guidance')
+                  for item in guidance:
+                      rlines.append(f'- {item}')
+                  rlines.append('')
+              rlines.append('### Required Agent Instructions')
+              for item in ctx.get('agentInstructions', []):
+                  rlines.append(f'- `{checkout}/{item}`')
+              rlines.append('')
+              rlines.append('### Skills')
+              for item in ctx.get('skills', []):
+                  rlines.append(f'- `{checkout}/{item}`')
+              rlines.append('')
+              rlines.append('### Architecture Docs')
+              for item in ctx.get('architectureDocs', []):
+                  rlines.append(f'- `{checkout}/{item}`')
+              rlines.append('')
+              rlines.append('### ADRs')
+              for item in ctx.get('adrs', []):
+                  rlines.append(f'- `{checkout}/{item}`')
+              rlines.append('')
+              rlines.append('### Build Commands')
+              for item in ctx.get('buildCommands', []):
+                  rlines.append(f'- `{item}`')
+              rlines.append('')
+              rlines.append('### Test Commands')
+              for item in ctx.get('testCommands', []):
+                  rlines.append(f'- `{item}`')
+              rlines.append('')
+          Path('REPOSITORY_CONTEXT.md').write_text('\n'.join(rlines) + '\n', encoding='utf-8')
+          PY
+
+      - name: Workspace Summary
+        shell: bash
+        working-directory: ${{ inputs.workspace_root }}
+        run: |
+          cat WORKSPACE.md
+          cat WORKSPACE.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Repository Context Summary
+        shell: bash
+        working-directory: ${{ inputs.workspace_root }}
+        run: |
+          cat REPOSITORY_CONTEXT.md
+          cat REPOSITORY_CONTEXT.md >> "$GITHUB_STEP_SUMMARY"

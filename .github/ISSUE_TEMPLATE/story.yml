@@ -1,0 +1,74 @@
+name: Story
+description: Platform-level story
+title: "Story: "
+labels:
+  - type:story
+  - status:idea
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Platform-level story. Tasks are created in the affected code repositories
+        and attached as sub-issues (see the "Create Tasks From Story" workflow).
+        Status is tracked via `status:*` labels.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What outcome should this story deliver, and why?
+    validations:
+      required: true
+  - type: input
+    id: epic
+    attributes:
+      label: Parent Epic
+      description: "Reference the parent epic issue, e.g. #42 – Epic title"
+      placeholder: "#42 – Epic title"
+    validations:
+      required: false
+  - type: input
+    id: story-branch
+    attributes:
+      label: Story Branch
+      description: "Shared story branch, e.g. story/1234-short-title"
+      placeholder: story/<number>-<slug>
+    validations:
+      required: false
+  - type: checkboxes
+    id: affected-repos
+    attributes:
+      label: Affected Repositories
+      description: Which code repositories are impacted?
+      options:
+        - label: mss-app
+        - label: maui-toolkit
+        - label: net-client-api
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Testable, unambiguous criteria for "done".
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: open-questions
+    attributes:
+      label: Open Questions
+      description: Unknowns to resolve during refinement.
+    validations:
+      required: false
+  - type: textarea
+    id: hints
+    attributes:
+      label: Hinweise für die Umsetzung
+      description: >
+        Optionaler Kontext für das Refinement – keine Akzeptanzkriterien.
+        Technische Hinweise, Design-Referenzen, Einsatzbereiche.
+      placeholder: |
+        > Diese Hinweise sind **keine Akzeptanzkriterien** und dienen nur als Kontext für das Refinement.
+        - ...
+    validations:
+      required: false

@@ -1,0 +1,63 @@
+name: Task
+description: Implementation task in a code repository
+title: "Task: "
+labels:
+  - type:task
+  - status:ready
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Implementation task. One task belongs to exactly one code repository.
+        Tasks are normally generated from a story via the "Create Tasks From
+        Story" workflow, but can also be created manually with this form.
+        Add the matching `repo:<name>` label after creation.
+  - type: input
+    id: parent-story
+    attributes:
+      label: Parent Story
+      description: "Reference the parent story issue, e.g. MassimoSassanelli-NTTDATA/mms-solution#123"
+      placeholder: "owner/mms-solution#<number>"
+    validations:
+      required: true
+  - type: dropdown
+    id: target-repo
+    attributes:
+      label: Target Repository
+      options:
+        - mss-app
+        - maui-toolkit
+        - net-client-api
+    validations:
+      required: true
+  - type: input
+    id: story-branch
+    attributes:
+      label: Story Branch
+      description: "Shared story branch this task's PR targets"
+      placeholder: story/<number>-<slug>
+    validations:
+      required: false
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What exactly should change in this repository?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: test-expectations
+    attributes:
+      label: Test Expectations
+      description: Which builds/tests must pass?
+    validations:
+      required: false

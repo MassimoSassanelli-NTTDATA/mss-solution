@@ -1,0 +1,110 @@
+{
+  "platform": {
+    "name": "mobile-scan-simplified",
+    "type": "platform-wrapper",
+    "role": "mobile-scan-simplified solution wrapper and governance repository",
+    "description": "Owns epics, stories, architecture, ADRs, agent governance, and Copilot workspace configuration for the Mobile Scan Simplified solution. It does not contain product implementation code by default."
+  },
+  "repositories": {
+    "mss-app": {
+      "type": "mobile-application",
+      "role": "mobile application repository",
+      "description": "Implements mobile app features and user workflows.",
+      "branch": "auto",
+      "checkoutPath": "mss-app",
+      "dependencies": [
+        "maui-toolkit",
+        "net-client-api"
+      ],
+      "context": {
+        "agentInstructions": [
+          "AGENTS.md"
+        ],
+        "architectureDocs": [
+        ],
+        "adrs": [
+          "adrs/"
+        ],
+        "buildCommands": [
+          "dotnet build"
+        ],
+        "testCommands": [
+          "dotnet test"
+        ]
+      },
+      "agentGuidance": [
+        "Use this repository as the primary implementation target when the issue belongs to the mobile app.",
+        "Before creating new UI or app logic, inspect shared dependencies for reusable capabilities.",
+        "Create follow-up tasks if required changes belong to shared repositories."
+      ]
+    },
+    "maui-toolkit": {
+      "type": "shared-component",
+      "role": "shared .NET MAUI toolkit repository",
+      "description": "Provides reusable app-specific services, utils, MAUI controls, styles, themes, navigation helpers, and UI patterns.",
+      "branch": "auto",
+      "checkoutPath": "maui-toolkit",
+      "dependencies": [
+        "net-client-api"
+      ],
+      "context": {
+        "agentInstructions": [
+          "AGENTS.md"
+        ],
+        "architectureDocs": [
+        ],
+        "adrs": [
+          "adrs/"
+        ],
+        "buildCommands": [
+          "dotnet build"
+        ],
+        "testCommands": [
+          "dotnet test"
+        ]
+      },
+      "agentGuidance": [
+        "Reuse existing services, utils, controls, styles, and patterns before creating app-local UI components.",
+        "Do not introduce dependencies from this repository to concrete mobile app repositories."
+      ]
+    },
+    "net-client-api": {
+      "type": "foundation",
+      "role": ".NET client API framework repository",
+      "description": "Provides a reusable company-wide framework for building HTTP/REST/OData .NET client APIs.",
+      "branch": "auto",
+      "checkoutPath": "net-client-api",
+      "dependencies": [],
+      "context": {
+        "agentInstructions": [
+          "AGENTS.md"
+        ],
+        "architectureDocs": [
+        ],
+        "adrs": [
+          "adrs/"
+        ],
+        "buildCommands": [
+          "dotnet build"
+        ],
+        "testCommands": [
+          "dotnet test"
+        ]
+      },
+      "agentGuidance": [
+        "Treat this repository as framework-only and keep it implementation-agnostic.",
+        "Use it to provide reusable abstractions, helpers, and patterns for .NET client API creation.",
+        "Higher-level repositories may depend on this repository, but this repository must not depend on app or UI toolkit repositories."
+      ]
+    }
+  },
+  "rules": {
+    "platformRepositoryIsWrapper": "The platform repository owns epics, stories, architecture, governance, and workspace configuration. Product implementation belongs to code repositories.",
+    "issueHierarchy": "Epics and stories should live on the platform repository. Implementation tasks should live in the affected code repositories.",
+    "primaryRepositoryOnly": "Implement changes only in the code repository that owns the issue or pull request unless explicitly instructed otherwise.",
+    "dependencyGraphIsAuthoritative": "Use the configured dependency graph as the source of truth for allowed dependency directions and workspace selection.",
+    "projectReferenceLayout": "Code repositories are checked out as sibling directories below the platform workspace root. Relative .NET ProjectReference paths should be based on this layout.",
+    "reuseBeforeCreate": "Search checked-out dependency repositories for reusable assets, APIs, contracts, components, controls, sync capabilities, or patterns before creating new functionality.",
+    "crossRepoChanges": "If a change is required in another code repository, describe the required follow-up task instead of silently modifying that repository."
+  }
+}

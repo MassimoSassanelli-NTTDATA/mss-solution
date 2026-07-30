@@ -1,0 +1,33 @@
+name: Epic
+description: Product-level epic
+title: "Epic: "
+labels:
+  - type:epic
+  - status:idea
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Product-level epic. Epics group related stories and live in the platform
+        repository. Status is tracked via `status:*` labels.
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What business outcome does this epic pursue?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: In-scope and explicitly out-of-scope items.
+    validations:
+      required: true
+  - type: textarea
+    id: success-metrics
+    attributes:
+      label: Success Metrics
+      description: How is success measured?
+    validations:
+      required: false

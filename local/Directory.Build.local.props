@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <!-- When true the solution will use project references, otherwise it will use NuGet packages -->
+    <UseLocalProjects>true</UseLocalProjects>
+  </PropertyGroup>
+</Project>

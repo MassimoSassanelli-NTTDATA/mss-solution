@@ -11,7 +11,7 @@
       "role": "mobile application repository",
       "description": "Implements mobile app features and user workflows.",
       "branch": "auto",
-      "checkoutPath": "mss-app",
+      "checkoutPath": "repos/mss-app",
       "dependencies": [
         "maui-toolkit",
         "net-client-api-sapcloud"
@@ -43,7 +43,7 @@
       "role": "shared .NET MAUI toolkit repository",
       "description": "Provides reusable app-specific services, utils, MAUI controls, styles, themes, navigation helpers, and UI patterns.",
       "branch": "auto",
-      "checkoutPath": "maui-toolkit",
+      "checkoutPath": "repos/maui-toolkit",
       "dependencies": [
         "net-client-api"
       ],
@@ -73,7 +73,7 @@
       "role": ".NET client API framework repository",
       "description": "Provides a reusable company-wide framework for building HTTP/REST/OData .NET client APIs.",
       "branch": "auto",
-      "checkoutPath": "net-client-api",
+      "checkoutPath": "repos/net-client-api",
       "dependencies": [],
       "context": {
         "agentInstructions": [
@@ -102,7 +102,7 @@
       "role": "SAP Cloud OData API client library",
       "description": "Provides a reusable company-wide .NET library for consuming SAP Cloud OData APIs.",
       "branch": "auto",
-      "checkoutPath": "net-client-api-sapcloud",
+      "checkoutPath": "repos/net-client-api-sapcloud",
       "dependencies": [
         "net-client-api"
       ],

@@ -1,0 +1,24 @@
+<Solution>
+  <Folder Name="/mss-app/">
+    <Project Path="../repos/mss-app/src/Apis/NDBS.MSS.Api/NDBS.MSS.Api.csproj" />
+    <Project Path="../repos/mss-app/src/Apps/NDBS.MSS/NDBS.MSS.csproj" />
+    <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Api/NDBS.Maui.Toolkit.Api.csproj" />
+    <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Auth.Oidc/NDBS.Maui.Toolkit.Auth.Oidc.csproj" />
+    <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Logging.Serilog/NDBS.Maui.Toolkit.Logging.Serilog.csproj" />
+    <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Telemetry.Insights/NDBS.Maui.Toolkit.Telemetry.Insights.csproj" />
+    <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit/NDBS.Maui.Toolkit.csproj" />
+    <Project Path="../repos/mss-app/src/NDBS.MauiToolkit.Barcode/NDBS.MauiToolkit.Barcode.csproj" />
+    <Project Path="../repos/mss-app/src/NDBS.MauiToolkit.Impressum/NDBS.MauiToolkit.Impressum.csproj" />
+    <Project Path="../repos/mss-app/src/NDBS.SAPCloud.OData.MauiToolkit/NDBS.SAPCloud.OData.MauiToolkit.csproj" />
+    <Project Path="../repos/mss-app/src/NDBS.Xia.Api/NDBS.Xia.Api.csproj" />
+    <Project Path="../repos/mss-app/src/NDBS.Xia.MauiToolkit/NDBS.Xia.MauiToolkit.csproj" />
+  </Folder>
+  <Folder Name="/net-client-api-sapcloud/">
+    <Project Path="../repos/net-client-api-sapcloud/src/NDBS.SAPCloud.OData/NDBS.SAPCloud.OData.csproj" />
+  </Folder>
+  <Folder Name="/net-client-api/">
+    <Project Path="../repos/net-client-api/src/NDBS.Api.OData/NDBS.Api.OData.csproj" />
+    <Project Path="../repos/net-client-api/src/NDBS.Api.Refit/NDBS.Api.Refit.csproj" />
+    <Project Path="../repos/net-client-api/src/NDBS.Api/NDBS.Api.csproj" />
+  </Folder>
+</Solution>

@@ -2,9 +2,9 @@
 # They are cloned into this workspace for cross-project visibility
 # but are NOT tracked by the workspace repo.
 
-/mss-app/
-/maui-toolkit/
-/net-client-api/
+/repos/
 
 WORKSPACE.md
 REPOSITORY_CONTEXT.md
+
+.vs/

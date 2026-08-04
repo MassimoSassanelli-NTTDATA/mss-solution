@@ -10,8 +10,12 @@
 mss-app
  ├── maui-toolkit
  ├── net-client-api
+ ├── net-client-api-sapcloud
 
 maui-toolkit
+ └── net-client-api
+
+net-client-api-sapcloud
  └── net-client-api
 
 net-client-api
@@ -25,7 +29,9 @@ Allowed:
 ```text
 mss-app -> maui-toolkit
 mss-app -> net-client-api
+mss-app -> net-client-api-sapcloud
 maui-toolkit -> net-client-api
+net-client-api -> net-client-api-sapcloud
 ```
 
 Not allowed:
@@ -33,5 +39,9 @@ Not allowed:
 ```text
 net-client-api -> maui-toolkit
 net-client-api -> mss-app
+net-client-api -> net-client-api-sapcloud
+net-client-api-sapcloud -> maui-toolkit
+net-client-api-sapcloud -> mss-app
+net-client-api-sapcloud -> net-client-api
 maui-toolkit -> mss-app
 ```

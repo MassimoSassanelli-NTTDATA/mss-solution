@@ -4,16 +4,16 @@
 			"path": "."
 		},
 		{
-			"path": "../net-client-api"
+			"path": "repos/net-client-api"
 		},
 		{
-			"path": "../maui-toolkit"
+			"path": "repos/maui-toolkit"
 		},
 		{
-			"path": "../mss-app"
+			"path": "repos/mss-app"
 		},
 		{
-			"path": "../net-client-api-sapcloud"
+			"path": "repos/net-client-api-sapcloud"
 		}
 	],
 	"settings": {

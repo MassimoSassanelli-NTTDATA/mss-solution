@@ -1,12 +1,10 @@
 ---
-description: "Erweitert eine bestehende, auf net-client-api basierende Client API um neue Endpunkte und DTOs anhand ihrer OpenAPI-Definition. Use when: Client API erweitern, neue Endpunkte ergänzen, Refit-Methode hinzufügen, DTO ergänzen, OpenAPI-Operation integrieren, Service um Endpunkt erweitern."
-name: "Client API erweitern"
-argument-hint: "Nenne das Client-API-Projekt und optional Endpunkte, z.B. NDBS.SAPCloud.OData / WarehouseOrder"
-agent: "agent"
+description: Erweitert eine bestehende, auf net-client-api basierende Client API um neue Endpunkte und DTOs anhand ihrer OpenAPI-Definition. Use when: Client API erweitern, neue Endpunkte ergänzen, Refit-Methode hinzufügen, DTO ergänzen, OpenAPI-Operation integrieren, Service um Endpunkt erweitern."
+argument-hint: Nenne das Client-API-Projekt und optional Endpunkte, z.B. NDBS.SAPCloud.OData / WarehouseOrder
+agent: agent
 ---
 
-# Client API um Endpunkte und DTOs erweitern
-
+# Client API um Endpunkte und DTOs erweite
 Erweitere eine **bestehende** Client API um neue Endpunkte und DTOs **anhand ihrer
 OpenAPI-Definition**. Jede Client API in diesem Workspace basiert auf
 `net-client-api` (`NDBS.Api`, `NDBS.Api.OData`, `NDBS.Api.Refit`).

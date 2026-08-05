@@ -29,6 +29,14 @@ durch die Erstellung eines gleichartigen Projekts.
 Wenn der Skill in einer Multi-Repo-Workspace verwendet wird, bezieht sich "dieses Repository"
 immer auf das vom Nutzer bestätigte Ziel-Repository.
 
+> **Konventionen vs. Workflow:** Die Implementierungs-Konventionen für Refit-Interface, DTOs und
+> Services stehen zentral in der Instruction
+> [client-api-implementation.instructions.md](../../instructions/client-api-implementation.instructions.md)
+> (immer aktiv beim Editieren von `Apis/**` / `I*RefitApi.cs`). Dieser Skill fokussiert auf den
+> Scaffolding-Workflow eines **neuen** Projekts und verweist für die Regeln dorthin, statt sie zu
+> wiederholen. Für das **Erweitern** einer bestehenden Client API den Prompt „Client API erweitern"
+> verwenden.
+
 ---
 
 ## Architekturübersicht
@@ -211,15 +219,10 @@ public interface IMyRefitApi
 }
 ```
 
-**Konventionen für das Interface:**
-
-- `[Query] Dictionary<string, string>?` für OData-Parameter (`$filter`, `$select` …) – erzeugt
-  automatisch Query-String.
-- `[AliasAs("name")]` wenn der Parameterbezeichner im C# sich vom URL-Platzhalter unterscheidet.
-- `[Body]` für JSON-Bodies bei POST/PUT/PATCH.
-- Rückgabetyp `ApiResponse<T>` gibt Zugriff auf HTTP-Statuscode + Body; `IApiResponse` wenn kein
-  Body erwartet wird.
-- Gruppierung per `#region` nach Ressource, analog zur OpenAPI-Struktur.
+Die Attribut- und Signaturregeln (`[Get]`/`[Post]`/…, `[AliasAs]`, `[Body]`, Rückgabetyp
+`ApiResponse<T>` vs. `IApiResponse`, `[Query] Dictionary<string, string>?` bei OData sowie die
+`#region`-Gruppierung) stehen in der
+[Konventions-Instruction](../../instructions/client-api-implementation.instructions.md#refit-interface).
 
 ---
 
@@ -252,13 +255,9 @@ public class FooCreateDto
 }
 ```
 
-**Regeln für DTOs:**
-
-- `nullable` Properties mit `?` markieren wenn das Feld optional/null sein kann.
-- Navigation Properties (`$expand`) als `IReadOnlyList<T>?` mit `[JsonPropertyName]` wenn der
-  JSON-Key sich vom C#-Namen unterscheidet.
-- Kein Mapping-Code, keine Domänenlogik – reine Datentransferklassen.
-- Create-DTOs von Read-DTOs trennen wenn sich die Felder unterscheiden.
+Die DTO-Regeln (nullable mit `?`, `[JsonPropertyName]` bei abweichendem JSON-Key, Navigation
+Properties als `IReadOnlyList<T>?`, reine Datentransfertypen, Create-/Read-DTOs trennen) stehen in
+der [Konventions-Instruction](../../instructions/client-api-implementation.instructions.md#dtos).
 
 ---
 

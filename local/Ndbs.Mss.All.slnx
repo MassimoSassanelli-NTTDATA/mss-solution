@@ -1,8 +1,10 @@
 <Solution>
+  <Folder Name="/maui-toolkit/">
+    <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Core/Ndbs.MauiToolkit.Core.csproj" Id="52591c1c-42ee-4d94-962c-d5887f18e9df" />
+  </Folder>
   <Folder Name="/mss-app/">
     <Project Path="../repos/mss-app/src/Apis/NDBS.MSS.Api/NDBS.MSS.Api.csproj" />
     <Project Path="../repos/mss-app/src/Apps/NDBS.MSS/NDBS.MSS.csproj" />
-    <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Api/NDBS.Maui.Toolkit.Api.csproj" />
     <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Auth.Oidc/NDBS.Maui.Toolkit.Auth.Oidc.csproj" />
     <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Logging.Serilog/NDBS.Maui.Toolkit.Logging.Serilog.csproj" />
     <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Telemetry.Insights/NDBS.Maui.Toolkit.Telemetry.Insights.csproj" />

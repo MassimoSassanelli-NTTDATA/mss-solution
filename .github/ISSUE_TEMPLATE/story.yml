@@ -44,6 +44,7 @@ body:
         - label: maui-toolkit
         - label: net-client-api-sapcloud
         - label: net-client-api
+        - label: net-client-api-xia
   - type: textarea
     id: acceptance-criteria
     attributes:

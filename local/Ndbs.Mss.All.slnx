@@ -1,10 +1,16 @@
 <Solution>
   <Folder Name="/maui-toolkit/">
-    <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Core/Ndbs.MauiToolkit.Core.csproj" Id="52591c1c-42ee-4d94-962c-d5887f18e9df" />
+    <Project Path="../repos/maui-toolkit/demo/SimpleApp/SimpleApp.csproj" Id="46ebd722-7075-4818-9f15-7dc7196ca7af" />
+    <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit/Ndbs.MauiToolkit.csproj" Id="11dc5547-e0b0-405d-9586-c4854e48c1f0" />
+  </Folder>
+  <Folder Name="/maui-toolkit/tests/">
+    <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Tests/Ndbs.MauiToolkit.Tests.csproj" />
   </Folder>
   <Folder Name="/mss-app/">
     <Project Path="../repos/mss-app/src/Apis/NDBS.MSS.Api/NDBS.MSS.Api.csproj" />
-    <Project Path="../repos/mss-app/src/Apps/NDBS.MSS/NDBS.MSS.csproj" />
+    <Project Path="../repos/mss-app/src/Apps/NDBS.MSS/NDBS.MSS.csproj">
+      <Deploy Solution="Debug|*" />
+    </Project>
     <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Auth.Oidc/NDBS.Maui.Toolkit.Auth.Oidc.csproj" />
     <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Logging.Serilog/NDBS.Maui.Toolkit.Logging.Serilog.csproj" />
     <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Telemetry.Insights/NDBS.Maui.Toolkit.Telemetry.Insights.csproj" />
@@ -22,5 +28,8 @@
     <Project Path="../repos/net-client-api/src/NDBS.Api.OData/NDBS.Api.OData.csproj" />
     <Project Path="../repos/net-client-api/src/NDBS.Api.Refit/NDBS.Api.Refit.csproj" />
     <Project Path="../repos/net-client-api/src/NDBS.Api/NDBS.Api.csproj" />
+  </Folder>
+  <Folder Name="/net-client-api-xia/">
+    <Project Path="../repos/net-client-api-xia/src/NDBS.Xia.Api.csproj" />
   </Folder>
 </Solution>

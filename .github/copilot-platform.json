@@ -122,7 +122,35 @@
         ]
       },
       "agentGuidance": [
-        "Verwende diese Bibliothek immer wenn du mit SAP Cloud Standard APIs kommunizieren m\u00f6chtest."
+        "Verwende diese Bibliothek immer wenn du mit SAP Cloud Standard APIs kommunizieren möchtest."
+      ]
+    },
+    "net-client-api-xia": {
+      "type": "backend-service",
+      "role": "XIA API client library",
+      "description": "Provides a reusable company-wide .NET library for consuming NTTDATA XIA platform.",
+      "branch": "auto",
+      "checkoutPath": "repos/net-client-api-xia",
+      "dependencies": [
+        "net-client-api"
+      ],
+      "context": {
+        "agentInstructions": [
+          "AGENTS.md"
+        ],
+        "architectureDocs": [],
+        "adrs": [
+          "adrs/"
+        ],
+        "buildCommands": [
+          "dotnet build"
+        ],
+        "testCommands": [
+          "dotnet test"
+        ]
+      },
+      "agentGuidance": [
+        "Verwende diese Bibliothek immer wenn du mit der XIA Plattform kommunizieren moechtest."
       ]
     }
   },

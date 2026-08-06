@@ -29,6 +29,7 @@ body:
         - maui-toolkit
         - net-client-api-sapcloud
         - net-client-api
+        - net-client-api-xia
     validations:
       required: true
   - type: input

@@ -1,9 +1,18 @@
 <Solution>
   <Folder Name="/maui-toolkit/">
     <Project Path="../repos/maui-toolkit/demo/SimpleApp/SimpleApp.csproj" Id="46ebd722-7075-4818-9f15-7dc7196ca7af" />
+    <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Core/Ndbs.MauiToolkit.Core.csproj" />
+    <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.DynamicTables/Ndbs.MauiToolkit.DynamicTables.csproj" />
+    <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Xia.Loading/Ndbs.MauiToolkit.Xia.Loading.csproj" />
+    <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Xia.Data/Ndbs.MauiToolkit.Xia.Data.csproj" />
+    <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Xia/Ndbs.MauiToolkit.Xia.csproj" />
     <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit/Ndbs.MauiToolkit.csproj" Id="11dc5547-e0b0-405d-9586-c4854e48c1f0" />
   </Folder>
   <Folder Name="/maui-toolkit/tests/">
+    <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Core.Tests/Ndbs.MauiToolkit.Core.Tests.csproj" />
+    <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.DynamicTables.Tests/Ndbs.MauiToolkit.DynamicTables.Tests.csproj" />
+    <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Xia.Loading.Tests/Ndbs.MauiToolkit.Xia.Loading.Tests.csproj" />
+    <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Xia.Data.Tests/Ndbs.MauiToolkit.Xia.Data.Tests.csproj" />
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Tests/Ndbs.MauiToolkit.Tests.csproj" />
   </Folder>
   <Folder Name="/mss-app/">
@@ -30,6 +39,6 @@
     <Project Path="../repos/net-client-api/src/NDBS.Api/NDBS.Api.csproj" />
   </Folder>
   <Folder Name="/net-client-api-xia/">
-    <Project Path="../repos/net-client-api-xia/src/NDBS.Xia.Api.csproj" />
+    <Project Path="../repos/net-client-api-xia/src/NDBS.Xia.Api/NDBS.Xia.Api.csproj" />
   </Folder>
 </Solution>

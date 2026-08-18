@@ -1,11 +1,13 @@
 <Solution>
   <Folder Name="/maui-toolkit/">
     <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Abstractions/Ndbs.MauiToolkit.Abstractions.csproj" />
+    <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.DeviceConfiguration/Ndbs.MauiToolkit.DeviceConfiguration.csproj" />
     <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.DynamicTables/Ndbs.MauiToolkit.DynamicTables.csproj" />
     <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Xia/Ndbs.MauiToolkit.Xia.csproj" />
     <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit/Ndbs.MauiToolkit.csproj" Id="11dc5547-e0b0-405d-9586-c4854e48c1f0" />
   </Folder>
   <Folder Name="/maui-toolkit/tests/">
+    <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.DeviceConfiguration.Tests/Ndbs.MauiToolkit.DeviceConfiguration.Tests.csproj" />
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.DynamicTables.Tests/Ndbs.MauiToolkit.DynamicTables.Tests.csproj" />
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Tests/Ndbs.MauiToolkit.Tests.csproj" />
   </Folder>

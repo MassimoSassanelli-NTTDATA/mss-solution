@@ -128,7 +128,7 @@
     "net-client-api-xia": {
       "type": "backend-service",
       "role": "XIA API client library",
-      "description": "Provides a reusable company-wide .NET library for consuming NTTDATA XIA platform.",
+      "description": "Provides a reusable company-wide .NET library for consuming NTT DATA XIA platform.",
       "branch": "auto",
       "checkoutPath": "repos/net-client-api-xia",
       "dependencies": [

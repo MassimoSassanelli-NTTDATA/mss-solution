@@ -6,6 +6,7 @@
     <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Auth/Ndbs.MauiToolkit.Auth.csproj" />
     <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.DeviceConfiguration/Ndbs.MauiToolkit.DeviceConfiguration.csproj" />
     <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.DynamicTables/Ndbs.MauiToolkit.DynamicTables.csproj" />
+    <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Logging.Serilog/Ndbs.MauiToolkit.Logging.Serilog.csproj" />
     <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Xia/Ndbs.MauiToolkit.Xia.csproj" />
     <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit/Ndbs.MauiToolkit.csproj" Id="11dc5547-e0b0-405d-9586-c4854e48c1f0" />
   </Folder>
@@ -16,6 +17,7 @@
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Auth.Tests/Ndbs.MauiToolkit.Auth.Tests.csproj" />
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.DeviceConfiguration.Tests/Ndbs.MauiToolkit.DeviceConfiguration.Tests.csproj" />
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.DynamicTables.Tests/Ndbs.MauiToolkit.DynamicTables.Tests.csproj" />
+    <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Logging.Serilog.Tests/Ndbs.MauiToolkit.Logging.Serilog.Tests.csproj" />
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Tests/Ndbs.MauiToolkit.Tests.csproj" />
   </Folder>
   <Folder Name="/mss-app/">
@@ -29,7 +31,6 @@
     <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit/NDBS.Maui.Toolkit.csproj" />
     <Project Path="../repos/mss-app/src/NDBS.MauiToolkit.Barcode/NDBS.MauiToolkit.Barcode.csproj" />
     <Project Path="../repos/mss-app/src/NDBS.SAPCloud.OData.MauiToolkit/NDBS.SAPCloud.OData.MauiToolkit.csproj" />
-    <Project Path="../repos/mss-app/src/NDBS.Xia.Api/NDBS.Xia.Api.csproj" />
     <Project Path="../repos/mss-app/src/NDBS.Xia.MauiToolkit/NDBS.Xia.MauiToolkit.csproj" />
   </Folder>
   <Folder Name="/net-client-api-sapcloud/">

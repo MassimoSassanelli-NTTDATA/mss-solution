@@ -26,7 +26,6 @@
       <Deploy Solution="Debug|*" />
     </Project>
     <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Auth.Oidc/NDBS.Maui.Toolkit.Auth.Oidc.csproj" />
-    <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Logging.Serilog/NDBS.Maui.Toolkit.Logging.Serilog.csproj" />
     <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit.Telemetry.Insights/NDBS.Maui.Toolkit.Telemetry.Insights.csproj" />
     <Project Path="../repos/mss-app/src/NDBS.Maui.Toolkit/NDBS.Maui.Toolkit.csproj" />
     <Project Path="../repos/mss-app/src/NDBS.MauiToolkit.Barcode/NDBS.MauiToolkit.Barcode.csproj" />

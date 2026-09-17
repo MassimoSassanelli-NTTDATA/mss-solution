@@ -12,6 +12,7 @@
   </Folder>
   <Folder Name="/maui-toolkit/Extensions/">
     <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Extensions.Imprint/Ndbs.MauiToolkit.Extensions.Imprint.csproj" />
+    <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Extensions.Validation/Ndbs.MauiToolkit.Extensions.Validation.csproj" Id="0f3fbe8a-e73d-472d-83b0-8036b0e969aa" />
   </Folder>
   <Folder Name="/maui-toolkit/tests/">
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Auth.Tests/Ndbs.MauiToolkit.Auth.Tests.csproj" />

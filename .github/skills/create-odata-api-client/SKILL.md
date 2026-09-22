@@ -137,7 +137,7 @@ Lege eine neue `.csproj`-Datei an (Target `net9.0`):
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.19" />
     <PackageReference Include="Refit" Version="9.0.2" />
     <PackageReference Include="Refit.HttpClientFactory" Version="9.0.2" />
   </ItemGroup>

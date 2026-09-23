@@ -15,11 +15,14 @@
     <Project Path="../repos/maui-toolkit/src/Ndbs.MauiToolkit.Extensions.Validation/Ndbs.MauiToolkit.Extensions.Validation.csproj" Id="0f3fbe8a-e73d-472d-83b0-8036b0e969aa" />
   </Folder>
   <Folder Name="/maui-toolkit/tests/">
+    <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Abstractions.Tests/Ndbs.MauiToolkit.Abstractions.Tests.csproj" />
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Auth.Tests/Ndbs.MauiToolkit.Auth.Tests.csproj" />
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.DeviceConfiguration.Tests/Ndbs.MauiToolkit.DeviceConfiguration.Tests.csproj" />
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.DynamicTables.Tests/Ndbs.MauiToolkit.DynamicTables.Tests.csproj" />
+    <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Extensions.Imprint.Tests/Ndbs.MauiToolkit.Extensions.Imprint.Tests.csproj" />
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Logging.Serilog.Tests/Ndbs.MauiToolkit.Logging.Serilog.Tests.csproj" />
     <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Tests/Ndbs.MauiToolkit.Tests.csproj" />
+    <Project Path="../repos/maui-toolkit/tests/Ndbs.MauiToolkit.Xia.Tests/Ndbs.MauiToolkit.Xia.Tests.csproj" />
   </Folder>
   <Folder Name="/mss-app/">
     <Project Path="../repos/mss-app/src/Apis/NDBS.MSS.Api/NDBS.MSS.Api.csproj" />
